@@ -3,7 +3,6 @@ bool isPalindrome(string &s){
         if(s[i]!=s[s.length()-1-i]) return false;
     return true;
 }
-
 class Solution {
 public:
     int removePalindromeSub(string s) {
