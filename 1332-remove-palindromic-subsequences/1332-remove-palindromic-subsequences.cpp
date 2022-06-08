@@ -7,11 +7,8 @@ bool isPalindrome(string &s){
 class Solution {
 public:
     int removePalindromeSub(string s) {
-        //if string is already empty, return 0
         if(s.length()==0) return 0;
-        //if string is already palindrome, return 1
         if(isPalindrome(s)) return 1;
-        //return 2
         return 2;
     }
 };
