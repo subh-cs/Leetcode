@@ -16,10 +16,10 @@ class Solution {
 public:
     int minimumTotal(vector<vector<int>>& triangle) {
     //my dp vector for memo
-    vector<vector<int>> dp(triangle.size(),vector<int>(triangle.size()));
-    for(auto &it: dp)
-        for(auto &jt: it)
-            jt=-1;
+    vector<vector<int>> dp(triangle.size(),vector<int>(triangle.size(),-1));
+    // for(auto &it: dp)
+    //     for(auto &jt: it)
+    //         jt=-1;
     // return ans(triangle,0,0);
     return memo_ans(triangle,0,0,dp);  
     }
