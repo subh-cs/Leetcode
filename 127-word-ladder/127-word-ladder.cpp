@@ -18,7 +18,7 @@ public:
                 //check for each alphabet
                 for(int j=0;j<26;++j){
                     top[i]='a'+j;
-                    if(dt.count(top)==1)
+                    if(dt.find(top)!=dt.end())
                         q.push(top);
                 }
                 top[i]=temp;
