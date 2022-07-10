@@ -7,9 +7,9 @@ int f(int i, vector<int>&cost){
 class Solution {
 public:
     int minCostClimbingStairs(vector<int>& cost) {
-        for(int i=0;i<1001;i++) dp[i]=-1;
+        memset(dp,-1, sizeof dp);
         int zero = f(0,cost);
-        for(int i=0;i<1001;i++) dp[i]=-1;
+        memset(dp,-1, sizeof dp);
         int one = f(1,cost);
         return min(zero,one);
     }
