@@ -18,8 +18,8 @@ void bfs(TreeNode* root, vector<vector<int>>&v){
         while(n--){
             TreeNode* top=q.front();
             q.pop();
-            if(top->left!=nullptr) q.push(top->left);
-            if(top->right!=nullptr) q.push(top->right);
+            if(top->left) q.push(top->left);
+            if(top->right) q.push(top->right);
             demo.push_back(top->val);
         }
         v.push_back(demo);
