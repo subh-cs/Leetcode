@@ -10,6 +10,7 @@
  * };
  */
 void bfs(TreeNode* root, vector<vector<int>>&v){
+    if(!root) return;
     queue<TreeNode*>q;
     q.push(root);
     while(!q.empty()){
@@ -26,13 +27,23 @@ void bfs(TreeNode* root, vector<vector<int>>&v){
     }
 }
 
+void dfs(TreeNode* root,int level, map<int,vector<int>>&m){
+    if(!root) return;
+    m[level].push_back(root->val);
+    if(root->left) dfs(root->left,level+1,m);
+    if(root->right) dfs(root->right,level+1,m);
+}
+
 
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
+        // bfs(root,ans);
+        map<int,vector<int>>m;
+        dfs(root,0,m);
         vector<vector<int>>ans;
-        if(!root) return ans;
-        bfs(root,ans);
+        for(auto it: m)
+            ans.push_back(it.second);
         return ans;
     }
 };
