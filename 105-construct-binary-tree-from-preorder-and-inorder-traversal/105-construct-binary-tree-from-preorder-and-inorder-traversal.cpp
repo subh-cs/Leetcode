@@ -12,7 +12,6 @@
 
 
 class Solution {
-
 public:
 TreeNode* f(int l, int r,int &ind, vector<int>&pre, vector<int>&in){
     if(l>r) return NULL;
