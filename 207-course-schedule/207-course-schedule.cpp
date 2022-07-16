@@ -13,7 +13,7 @@ public:
         if(p.size()==0) return true;
         vector<int>adj[n];vector<int>vis(n);
         for(auto it: p)
-            adj[it[0]].push_back(it[1]);
+            adj[it[1]].push_back(it[0]);
         for(auto it: p)
             if(!detectCycle(it[0],vis,adj)) return false;
         return true;
