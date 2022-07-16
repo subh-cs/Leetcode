@@ -1,25 +1,21 @@
-//step 3 (design dfs function)
-bool dfs(int node, vector<int> adj[], vector<int>&vis){
+bool detectCycle(int node,vector<int>&vis,vector<int>adj[]){
     if(vis[node]==1) return false;
     if(vis[node]==2) return true;
     vis[node]=1;
     for(auto it: adj[node])
-        if(!dfs(it,adj,vis)) return false;
-    vis[node]=2;
-    return true;
+        if(!detectCycle(it,vis,adj)) return false;
+    vis[node]=2; return true;
 }
 
 class Solution {
 public:
-    bool canFinish(int n, vector<vector<int>>& pre) {
-        //step 1 (convert into adj list)
-        vector<int> adj[n], vis(n,0);
-        for(auto it:pre)
+    bool canFinish(int n, vector<vector<int>>& p) {
+        if(p.size()==0) return true;
+        vector<int>adj[n];vector<int>vis(n);
+        for(auto it: p)
             adj[it[0]].push_back(it[1]);
-        //step 2, call dfs for each node
-        for(int i=0;i<n;++i)
-            if(vis[i]!=2)
-                if(!dfs(i,adj,vis)) return false;
+        for(auto it: p)
+            if(!detectCycle(it[0],vis,adj)) return false;
         return true;
     }
 };
