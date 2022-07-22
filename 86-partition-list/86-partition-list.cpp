@@ -11,7 +11,7 @@
 class Solution {
 public:
     ListNode* partition(ListNode* head, int x) {
-        if(!head||!head->next) return head;
+        // if(!head||!head->next) return head;
         vector<int>res;
         ListNode* node = head;
         //
