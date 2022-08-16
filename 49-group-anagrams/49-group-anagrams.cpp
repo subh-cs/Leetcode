@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
         //it'll help to store indexes with one sorted anagram of string
-        map<string,vector<int>>m; 
+        unordered_map<string,vector<int>>m; 
         
         for(int i=0;i<strs.size();i++){
             string temp = strs[i];
