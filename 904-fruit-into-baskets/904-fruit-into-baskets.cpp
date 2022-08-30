@@ -2,7 +2,7 @@ class Solution {
 public:
     int totalFruit(vector<int>& f) {
         //k =2 always
-        map<int,int>m;
+        unordered_map<int,int>m;
         int i=0,j=0,n=f.size(),ans=0;
         
         while(j<n){
