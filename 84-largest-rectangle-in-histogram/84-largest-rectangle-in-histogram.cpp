@@ -1,45 +1,35 @@
-void NSL(vector<int> &nsl, vector<int> &heights, int n)
-{
-
-    stack<pair<int, int>> st;
-    for (int i = 0; i < n; ++i)
-    {
-        int ans = 1;
-        while (!st.empty() && st.top().first >= heights[i])
-        {
-            ans += st.top().second;
-            st.pop();
-        }
-        st.push({heights[i], ans});
-        nsl[i]=ans;
+vector<int> NSL(vector<int>heights){
+    vector<int>ans(heights.size());
+    stack<int>st;
+    for(int i=0;i<heights.size();i++){
+        while(!st.empty() && heights[st.top()]>=heights[i]) st.pop();
+        if(!st.empty()) ans[i] = st.top()+1;
+        else if(st.empty()) ans[i] = 0;
+        st.push(i);
     }
+    return ans;
 }
-
-void NSR(vector<int> &nsr, vector<int> &heights, int n)
-{
-    stack<pair<int, int>> st;
-    for (int i = n - 1; i >= 0; i--)
-    {
-        int ans = 1;
-        while (!st.empty() && st.top().first >= heights[i])
-        {
-            ans += st.top().second;
-            st.pop();
-        }
-        st.push({heights[i], ans});
-        nsr[i]=ans;
+vector<int> NSR(vector<int>heights){
+    vector<int>ans(heights.size());
+    stack<int>st;
+    for(int i=heights.size()-1;i>=0;i--){
+        while(!st.empty() && heights[st.top()]>=heights[i]) st.pop();
+        if(!st.empty()) ans[i] = st.top()+1;
+        else if(st.empty()) ans[i] = heights.size()+1;
+        st.push(i);
     }
+    return ans;
 }
 
 class Solution {
 public:
-    int largestRectangleArea(vector<int> heights){
-    int n = heights.size(), maxi = 0;
-    vector<int> nsl(n), nsr(n);
-    NSL(nsl, heights, n);
-    NSR(nsr, heights, n);
-    for (int i = 0; i < n; ++i)
-        maxi = max(((nsl[i] + nsr[i] - 1) * heights[i]), maxi);
-    return maxi;
-}
+    int largestRectangleArea(vector<int>& heights) {
+        vector<int>nsl,nsr;int ans=0;
+        nsl=NSL(heights);
+        nsr=NSR(heights);
+        //count ans
+        for(int i=0;i<heights.size();i++)
+            ans=max(ans,heights[i]*(nsr[i]-nsl[i]-1));
+        return ans;
+    }
 };
