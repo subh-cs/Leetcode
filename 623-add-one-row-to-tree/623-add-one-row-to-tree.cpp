@@ -13,18 +13,16 @@ class Solution {
 public:
     void f(TreeNode* node, int depth, int v, int d){
         if(!node)return;
-        if(depth<=d-2){
-            f(node->left,depth+1,v,d);
-            f(node->right,depth+1,v,d);
+         if(depth==d-1){
+            TreeNode *tempLeft=new TreeNode(v);
+            TreeNode *tempRight=new TreeNode(v);
+            tempLeft->left=node->left;
+            tempRight->right=node->right;
+            node->left=tempLeft;
+            node->right=tempRight;
         }
-        else if(depth==d-1){
-            TreeNode *a=new TreeNode(v);
-            TreeNode *b=new TreeNode(v);
-            a->left=node->left;
-            b->right=node->right;
-            node->left=a;
-            node->right=b;
-        }
+        f(node->left,depth+1,v,d);
+        f(node->right,depth+1,v,d);
     }
     
     TreeNode* addOneRow(TreeNode* root, int v, int d) {
