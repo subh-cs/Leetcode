@@ -18,13 +18,13 @@ public:
             f(node->right,depth+1,v,d);
         }
         else{
-            TreeNode *t=node;
+            // TreeNode *t=node;
             TreeNode *a=new TreeNode(v);
-            a->left=t->left;
+            a->left=node->left;
             TreeNode *b=new TreeNode(v);
-            b->right=t->right;
-            t->left=a;
-            t->right=b;
+            b->right=node->right;
+            node->left=a;
+            node->right=b;
         }
     }
     
