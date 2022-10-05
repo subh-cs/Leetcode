@@ -17,11 +17,10 @@ public:
             f(node->left,depth+1,v,d);
             f(node->right,depth+1,v,d);
         }
-        else{
-            // TreeNode *t=node;
+        else if(depth==d-1){
             TreeNode *a=new TreeNode(v);
-            a->left=node->left;
             TreeNode *b=new TreeNode(v);
+            a->left=node->left;
             b->right=node->right;
             node->left=a;
             node->right=b;
