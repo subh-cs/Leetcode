@@ -11,27 +11,31 @@
  */
 class Solution {
 public:
-    void f(TreeNode* node, int depth, int v, int d){
-        if(!node)return;
-         if(depth==d-1){
-            TreeNode *tempLeft=new TreeNode(v);
-            TreeNode *tempRight=new TreeNode(v);
-            tempLeft->left=node->left;
-            tempRight->right=node->right;
-            node->left=tempLeft;
-            node->right=tempRight;
+    void addRow(TreeNode* root,int currLevel,int depth,int val){
+        if(!root) return;
+        if(currLevel==depth-1){
+            TreeNode *tempLeft = new TreeNode(val);
+            TreeNode *tempRight = new TreeNode(val);
+            tempLeft->left = root->left;
+            tempRight->right = root->right;
+            root->left  = tempLeft;
+            root->right = tempRight;
         }
-        f(node->left,depth+1,v,d);
-        f(node->right,depth+1,v,d);
+        addRow(root->left,currLevel+1,depth,val);
+        addRow(root->right,currLevel+1,depth,val);
     }
     
-    TreeNode* addOneRow(TreeNode* root, int v, int d) {
-        if(d==1){
-            TreeNode * nn=new TreeNode(v);
-            nn->left=root;
-            return nn;
+    
+    TreeNode* addOneRow(TreeNode* root, int val, int depth) {
+        //special case
+        if(depth==1){
+            TreeNode * tempRoot = root;
+            root = new TreeNode(val);
+            root->left = tempRoot;
+         }
+        else{
+            addRow(root,1,depth,val);
         }
-        f(root,1,v,d);
         return root;
     }
 };
